@@ -1,4 +1,4 @@
-package com.example.linhtinh;
+package com.example.practiceapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,7 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity implements IActivity{
+public class MainActivity extends AppCompatActivity implements IActivity {
     private static String TAG_MAIN_ACTIVITY ="MY_ACTIVITY";
     private Button buttonLogin;
     private Button buttonRegister;

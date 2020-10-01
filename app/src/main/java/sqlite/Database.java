@@ -5,8 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import user.User;
-import user.UserEntry;
+import model.User;
+import model.UserEntry;
 
 public class Database {
     public static String TAG = "Database";
@@ -39,7 +39,7 @@ public class Database {
                 String password = cursor.getString(cursor.getColumnIndexOrThrow(UserEntry.COLUMN_PASSWORD));
                 String tokenKey = cursor.getString(cursor.getColumnIndexOrThrow(UserEntry.COLUMN_TOKEN_KEY));
                 User foundUser = new User(username,password,tokenKey);
-                if (user.equals(foundUser.getUsername()) && pass.equals(foundUser.getPassword()))
+                if(foundUser.getUsername().equals(user) && foundUser.getPassword().equals(pass))
                     return foundUser;
             }
             return null;

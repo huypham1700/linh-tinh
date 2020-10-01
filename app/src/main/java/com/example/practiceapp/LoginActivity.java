@@ -1,5 +1,6 @@
-package com.example.linhtinh;
+package com.example.practiceapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
+import sqlite.Database;
 import validation.Validation;
 
 public class LoginActivity extends AppCompatActivity implements IActivity {
@@ -21,7 +23,7 @@ public class LoginActivity extends AppCompatActivity implements IActivity {
     private Button buttonBack;
     private TextView txtNotify;
     private Validation validation;
-    private Intent intent ;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,14 +35,16 @@ public class LoginActivity extends AppCompatActivity implements IActivity {
 
     @Override
     public void setupUI() {
+        Intent intent = getIntent();
         txtUsername=findViewById(R.id.loginUsername);
         txtPassword=findViewById(R.id.loginPassword);
         buttonLogin=findViewById(R.id.buttonLogin2);
         buttonBack=findViewById(R.id.buttonBack);
         txtNotify=findViewById(R.id.notify);
-        txtUsername.setText(intent.getStringExtra("username"));
-        System.out.println(intent.getStringExtra("username") + "abcdxyz123");
-        txtPassword.setText(intent.getStringExtra("password"));
+        String username = intent.getStringExtra("username");
+        txtUsername.setText(username);
+        String password = intent.getStringExtra("password");
+        txtPassword.setText(password);
     }
 
     @Override
@@ -70,11 +74,13 @@ public class LoginActivity extends AppCompatActivity implements IActivity {
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (validation.existedUser(txtUsername.getText().toString(),txtPassword.getText().toString())) {
+                if (validation.existedUser(txtUsername.getText().toString(),
+                        txtPassword.getText().toString(),LoginActivity.this)) {
                     Intent intent = new Intent(LoginActivity.this, ProductActivity.class);
-                    intent.putExtra("username", txtUsername.getText().toString());
-
+                    intent.putExtra("user_name", txtUsername.getText().toString());
                     LoginActivity.this.startActivity(intent);
+                }else{
+                    Toast.makeText(LoginActivity.this, "Cannot find user", Toast.LENGTH_SHORT).show();
                 }
             }
         });

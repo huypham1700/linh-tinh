@@ -1,4 +1,4 @@
-package com.example.linhtinh;
+package com.example.practiceapp;
 
 import org.junit.Test;
 

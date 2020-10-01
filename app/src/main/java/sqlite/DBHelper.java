@@ -5,7 +5,7 @@ import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
-import user.UserEntry;
+import model.UserEntry;
 
 public class DBHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "dbGames";

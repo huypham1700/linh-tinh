@@ -1,4 +1,4 @@
-package com.example.linhtinh;
+package com.example.practiceapp;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,19 +10,21 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class ProductActivity extends AppCompatActivity implements IActivity {
     private TextView txtName;
-    private Intent intent;
+
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.product_activity);
         setupUI();
         setupActions();
     }
 
     @Override
     public void setupUI() {
+        Intent intent = getIntent();
         txtName = findViewById(R.id.name);
-
-        txtName.setText(intent.getStringExtra("username"));
+        String userName = intent.getStringExtra("user_name");
+        txtName.setText("Hello "+ userName);
     }
 
     @Override

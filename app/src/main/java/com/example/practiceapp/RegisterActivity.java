@@ -1,4 +1,4 @@
-package com.example.linhtinh;
+package com.example.practiceapp;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -68,11 +68,8 @@ public class RegisterActivity extends AppCompatActivity implements IActivity {
         buttonRegister2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(registerErrorText.equals("")){
-                    new Database(RegisterActivity.this).insertUser(
-                            registerUsername.getText().toString(),
-                            registerPassword.getText().toString(),
-                            "asdasjdkasd");
+                if(new Validation().isValidUsername(registerUsername.getText().toString())){
+                    new Database(RegisterActivity.this).insertUser(registerUsername.getText().toString(), registerPassword.getText().toString(), "asdasjdkasd");
                 }
                 Intent intent = new Intent(RegisterActivity.this,LoginActivity.class);
                 intent.putExtra("username",registerUsername.getText().toString());
