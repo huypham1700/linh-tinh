@@ -21,10 +21,7 @@ public class ProductActivity extends AppCompatActivity implements IActivity {
 
     @Override
     public void setupUI() {
-        Intent intent = getIntent();
-        txtName = findViewById(R.id.name);
-        String userName = intent.getStringExtra("user_name");
-        txtName.setText("Hello "+ userName);
+
     }
 
     @Override
