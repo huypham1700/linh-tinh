@@ -7,10 +7,16 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import gameAdapter.GameAdapter;
+import model.Game;
 
 public class ProductActivity extends AppCompatActivity implements IActivity {
-    private TextView txtName;
-
+    private RecyclerView gameRecyclerView;
+    private RecyclerView.Adapter recyclerViewAdapter;
+    private Game game;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,7 +27,12 @@ public class ProductActivity extends AppCompatActivity implements IActivity {
 
     @Override
     public void setupUI() {
-
+        gameRecyclerView = findViewById(R.id.gameRecyclerView);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(
+                getApplicationContext(),RecyclerView.VERTICAL,false);
+        gameRecyclerView.setLayoutManager(layoutManager);
+        GameAdapter gameAdapter = new GameAdapter(this,game.generateFakeData());
+        gameRecyclerView.setAdapter(gameAdapter);
     }
 
     @Override
